@@ -1,0 +1,64 @@
+package dsa2;
+
+class Node{
+	int val;
+	Node next;
+	public Node(int val) {
+		this.val=val;
+		this.next=null;
+		}
+}
+
+class SLL{
+	Node root;
+	public SLL() {
+		this.root=null;
+	}
+	public void addNode(int val) {
+		Node n=new Node(val);
+		if(this.root==null) {
+			this.root=n;
+			return;
+		}
+		Node temp=this.root;
+		while(temp.next!=null) {
+			temp=temp.next;
+		}
+		temp.next=n;
+	}
+	public void printReverse(Node node) {
+		if(node==null) {
+			return;
+		}
+		printReverse(node.next);
+		System.out.print(node.val+"->");
+	}
+	public void display() {
+		Node temp=this.root;
+		while(temp!=null) {
+			System.out.print(temp.val+"->");
+			temp=temp.next;
+		}
+	}	
+}
+
+class PrintReverse{
+
+public static void main(String[] args) {
+	
+	SLL d=new SLL();
+	d.addNode(2);
+	d.addNode(4);
+	d.addNode(6);
+	d.addNode(8);
+	d.addNode(10);
+	d.addNode(12);
+	System.out.println("original list: ");
+	d.display();
+	System.out.println("\nreversed list: ");
+	d.printReverse(d.root);
+
+}
+
+}
+
