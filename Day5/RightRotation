@@ -1,0 +1,24 @@
+package com.vc;
+
+public class day5RightRotation {
+
+	public static void main(String[] args) {
+
+		int[] arr = {1,2,3,4,5,6,7,8,9,10};
+        int n = 3; // rotate 3 times
+        int length = arr.length;
+
+        for (int r = 0; r < n; r++) {
+            int last = arr[length - 1];
+            for (int i = length - 1; i > 0; i--) {
+                arr[i] = arr[i - 1];
+            }
+            arr[0] = last;
+        }
+
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+	}
+
+}
