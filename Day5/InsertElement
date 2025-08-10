@@ -1,0 +1,23 @@
+package com.vc;
+
+public class day5InsertElement {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        int x = 99; // element to insert
+        int y = 2;  // index to insert
+
+        int[] newArr = new int[arr.length + 1];
+
+        for (int i = 0, j = 0; i < newArr.length; i++) {
+            if (i == y) {
+                newArr[i] = x;
+            } else {
+                newArr[i] = arr[j++];
+            }
+        }
+
+        for (int num : newArr) {
+            System.out.print(num + " ");
+        }
+    }
+}
