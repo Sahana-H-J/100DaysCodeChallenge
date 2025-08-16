@@ -1,0 +1,90 @@
+package com.vc;
+//Node class
+class Node {
+ int val;
+ Node next;
+
+ Node(int val) {
+     this.val = val;
+     this.next = null;
+ }
+}
+
+//Single Linked List class
+class SingleLinkedList {
+ Node root;
+
+ // Method to insert new node at the end
+ public void insert(int val) {
+     Node n = new Node(val);
+     if (root == null) {
+         root = n;
+         return;
+     }
+     Node temp = root;
+     while (temp.next != null) {
+         temp = temp.next;
+     }
+     temp.next = n;
+ }
+
+ // Method to delete nth node from end using 2 pointers
+ public void deleteNthNodeFromEnd(int n) {
+     Node dummy = new Node(0);
+     dummy.next = root;
+
+     Node first = dummy;
+     Node second = dummy;
+
+     // Move first pointer n+1 steps ahead
+     for (int i = 0; i <= n; i++) {
+         if (first == null) return; // Edge case: n > length
+         first = first.next;
+     }
+
+     // Move both pointers until first reaches the end
+     while (first != null) {
+         first = first.next;
+         second = second.next;
+     }
+
+     // Delete the target node
+     second.next = second.next.next;
+
+     // Update head in case the first node was deleted
+     root = dummy.next;
+ }
+
+ // Print linked list
+ public void display() {
+     Node temp = root;
+     while (temp != null) {
+         System.out.print(temp.val + " -> ");
+         temp = temp.next;
+     }
+ }
+}
+
+//Driver class
+public class day9deleteNthNodefromLast {
+ public static void main(String[] args) {
+     SingleLinkedList list = new SingleLinkedList();
+     
+     // Insert elements
+     list.insert(1);
+     list.insert(2);
+     list.insert(3);
+     list.insert(4);
+     list.insert(5);
+
+     System.out.println("Original List:");
+     list.display();
+
+     int n = 2; // delete 2nd node from end
+     list.deleteNthNodeFromEnd(n);
+
+     System.out.println("\nAfter deleting " + n + "th node from end:");
+     list.display();
+ }
+}
+
