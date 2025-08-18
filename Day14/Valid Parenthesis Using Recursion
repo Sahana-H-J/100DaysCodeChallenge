@@ -1,0 +1,27 @@
+package com.vc;
+
+public class day14validParenthesisUsingRecursion {
+
+	 public static boolean isValid(String s) {
+	        if (s.isEmpty()) return true;
+
+	        String replaced = s.replace("()", "")
+	                           .replace("{}", "")
+	                           .replace("[]", "");
+
+	        if (replaced.equals(s)) return false;
+
+	        return isValid(replaced);
+	    }
+
+	    public static void main(String[] args) {
+	        String[] testCases = {"()", "()[]{}", "(]", "([)]", "{[]}", ""};
+
+	        System.out.println("Testing Valid Parentheses using Recursion:");
+	        for (String test : testCases) {
+	            System.out.println(test + " → " + isValid(test));
+	        }
+	    }
+
+
+}
