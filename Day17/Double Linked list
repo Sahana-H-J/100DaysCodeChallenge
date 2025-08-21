@@ -1,0 +1,50 @@
+package com.vc;
+class Node{
+	int val;
+	Node prev;
+	Node next;
+	public Node(int val) {
+		this.val=val;
+		this.prev=null;
+		this.next=null;
+	}
+}
+class DLL{
+	Node root;
+	Node tail;
+	public DLL() {
+		this.root=null;
+		this.tail=null;
+	}
+	public void addNode(int val) {
+		Node n=new Node(val);
+		if(this.root==null) {
+			this.root=n;
+			this.tail=n;
+			return;
+		}
+		tail.next=n;
+		n.prev=tail;
+		tail=n;
+	}
+	public void displayDLL() {
+		Node temp=this.root;
+		while(temp!=null) {
+			System.out.print(temp.val+"->");
+			temp=temp.next;
+		}
+	}
+}
+
+public class day17DLL {
+	public static void main(String[] args) {
+		DLL s=new DLL();
+		s.addNode(10);
+		s.addNode(60);
+		s.addNode(30);
+		s.addNode(20);
+		s.addNode(40);
+		s.addNode(90);
+		s.displayDLL();
+	}
+}
