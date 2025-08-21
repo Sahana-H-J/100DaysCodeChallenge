@@ -1,0 +1,44 @@
+package com.vc;
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
+
+public class DetectCycle {
+
+    public boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) return false;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;          // Move slow pointer by 1
+            fast = fast.next.next;     // Move fast pointer by 2
+
+            if (slow == fast) return true; // Cycle detected
+        }
+
+        return false; // No cycle
+    }
+
+    public static void main(String[] args) {
+        DetectCycle obj = new DetectCycle();
+
+        // Create a linked list: 3 -> 2 -> 0 -> -4
+        ListNode head = new ListNode(3);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(0);
+        head.next.next.next = new ListNode(-4);
+
+        // Create a cycle (last node pointing back to head.next)
+        head.next.next.next.next = head.next;
+
+        System.out.println("Has Cycle? " + obj.hasCycle(head)); // Output: true
+    }
+}
+
