@@ -1,0 +1,66 @@
+package com.vc;
+
+//Node class for Linked List
+class Node {
+ int data;
+ Node next;
+
+ Node(int data) {
+     this.data = data;
+     this.next = null;
+ }
+}
+
+//Stack implementation using Linked List
+class StackUsingLinkedList {
+ private Node top;
+
+ public StackUsingLinkedList() {
+     this.top = null;
+ }
+
+ public void push(int value) {
+     Node newNode = new Node(value);
+     newNode.next = top;
+     top = newNode;
+     System.out.println(value + " pushed to stack");
+ }
+
+ public int pop() {
+     if (top == null) {
+         System.out.println("Stack is empty!");
+         return -1;
+     }
+     int popped = top.data;
+     top = top.next;
+     return popped;
+ }
+
+ public void display() {
+     if (top == null) {
+         System.out.println("Stack is empty!");
+         return;
+     }
+     Node temp = top;
+     System.out.print("Stack elements: ");
+     while (temp != null) {
+         System.out.print(temp.data + " ");
+         temp = temp.next;
+     }
+     System.out.println();
+ }
+}
+public class day18stackUsingLL {
+
+	public static void main(String[] args) {
+		StackUsingLinkedList s=new StackUsingLinkedList();
+		s.push(10);
+		s.push(20);
+		s.push(30);
+		s.push(40);
+		s.display();
+		System.out.println("Popped: "+s.pop());
+		s.display();
+	}
+
+}
