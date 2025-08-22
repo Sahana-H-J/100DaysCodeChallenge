@@ -1,0 +1,75 @@
+package com.vc;
+
+//Node class for Linked List
+class Node {
+	int data;
+	Node next;
+
+	Node(int data) {
+		this.data = data;
+		this.next = null;
+	}
+}
+//Queue implementation using Linked List
+class QueueUsingLinkedList {
+	private Node front, rear;
+
+	public QueueUsingLinkedList() {
+		this.front = this.rear = null;
+	}
+
+	public void enqueue(int value) {
+		Node newNode = new Node(value);
+		if (rear == null) {
+			front = rear = newNode;
+			System.out.println(value + " enqueued to queue");
+			return;
+		}
+		rear.next = newNode;
+		rear = newNode;
+		System.out.println(value + " enqueued to queue");
+	}
+
+	public int dequeue() {
+		if (front == null) {
+			System.out.println("Queue is empty!");
+			return -1;
+		}
+		int dequeued = front.data;
+		front = front.next;
+
+		if (front == null) {
+			rear = null;
+		}
+		return dequeued;
+	}
+
+	public void display() {
+		if (front == null) {
+			System.out.println("Queue is empty!");
+			return;
+		}
+		Node temp = front;
+		System.out.print("Queue elements: ");
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+}
+public class day18queueUsingLL {
+
+	public static void main(String[] args) {
+		QueueUsingLinkedList q =new QueueUsingLinkedList();
+		q.enqueue(10);
+		q.enqueue(20);
+		q.enqueue(30);
+		q.enqueue(40);
+		q.enqueue(50);
+		q.display();
+		System.out.println("Dequeued: "+q.dequeue());
+		q.display();
+	}
+
+}
