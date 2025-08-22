@@ -1,0 +1,76 @@
+package com.vc;
+
+//Node class
+class Node {
+	int data;
+	Node next;
+
+	Node(int data) {
+		this.data = data;
+		this.next = null;
+	}
+}
+
+//Linked List with Sort
+class LinkedList {
+	Node head;
+
+	// Insert node at end
+	public void insert(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		Node temp = head;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = newNode;
+	}
+
+	// Sort linked list using Bubble Sort
+	public void sort() {
+		if (head == null) return;
+
+		Node current, index;
+		int tempData;
+
+		for (current = head; current != null; current = current.next) {
+			for (index = current.next; index != null; index = index.next) {
+				if (current.data > index.data) {
+					tempData = current.data;
+					current.data = index.data;
+					index.data = tempData;
+				}
+			}
+		}
+	}
+
+	// Display list
+	public void display() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+}
+public class day19sortLinkedList {
+
+	public static void main(String[] args) {
+		LinkedList l=new LinkedList();
+		l.insert(40);
+		l.insert(10);
+		l.insert(30);
+		l.insert(50);
+		l.insert(20);
+		System.out.println("Before Sorting: " );
+		l.display();
+		l.sort();
+		System.out.println("After Sorting: " );
+		l.display();
+	}
+
+}
